@@ -1,0 +1,71 @@
+// import the CSS framework
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.replies {margin-left: 50px;}
+.navbar-fixed-top {
+    min-height: 60px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 60px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;}
+}
+
+img {
+  @extend .img-responsive;
+  margin: 0 auto;
+  }
+// override for the 'Home' navigation link
+.navbar-brand {
+  font-size: inherit;
+  }
+
+// THESE ARE EXAMPLES YOU CAN MODIFY
+// create your own classes
+// to make views framework-neutral
+.column {
+  @extend .col-md-6;
+  @extend .text-justify;
+  }
+.form {
+  @extend .col-md-6;
+  }
+.form-centered {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+.form-new {
+  padding-left: 20px; 
+  align: right;
+}
+.submit {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  }
+// apply styles to HTML elements
+// to make views framework-neutral
+main {
+  @extend .container;
+  background-color: #eee;padding-right: 100px; 
+  padding-bottom: 80px;
+  width: 100%;
+  margin-top: 51px; // accommodate the navbar
+  }
+section {
+  @extend .row;
+  margin-top: 20px;
+  }
+ .foobarclass {
+    //for the simple_form_for
+ }

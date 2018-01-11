@@ -1,0 +1,9 @@
+<br />
+<br />
+<br />
+
+<h1>New category</h1>
+<% if @category.parent %>
+  <%= render 'category', category: @category.parent, from_reply_form: true %>
+<% end %>
+<%= render 'form' %>

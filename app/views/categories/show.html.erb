@@ -1,0 +1,10 @@
+<br />
+<br />
+<br />
+
+
+
+<h3>Products under this category</h3>
+<% Product.where(category_id: params[:id]).each do |product| %>
+<li><%= product.name %></li>
+<%end%>

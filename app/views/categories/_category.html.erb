@@ -1,0 +1,39 @@
+<div class="container">
+  <h2> <%= category.name %> </h2>
+  <p class="text-muted">Added by <strong> Admin </strong> on
+    <%= l(category.created_at, format: '%B, %d %Y %H:%M:%S') %> </p>
+  <p><%= link_to 'Delete', category_path(category.id), 
+                           method: :delete, 
+                           data: { confirm: 'Are you sure?' } %></p>
+                         
+ 
+  <blockquote>
+    <p> <%= category.description %> </p>
+  </blockquote>
+
+    <p>
+    	
+    	<div >
+    <%= image_tag Product.find_by_category_id(category.id).image.url, size: "260x200" if Product.find_by_category_id(category.id) %>
+    <% if category.leaf? != 0 %>
+       <% catvar = category.descendant_ids %>
+       <% puts "the list of child ids are:" + catvar.to_s %>
+       <% catvar.each do |pic| %>
+       
+       <section>
+       <%= image_tag Product.find_by_category_id(pic).image.url, size: "260x200" , class: "class-img" if Product.find_by_category_id(pic) %>
+       </section>
+     
+       <% end%>
+     <%end%>
+     
+    
+     </div>
+    </p> 
+                         
+    <% from_reply_form ||= nil %>
+    <% unless from_reply_form %>
+      <p><%= link_to 'Add Sub Category', new_category_path(category.id) %></p>
+     <% end %>                     
+
+</div>

@@ -1,0 +1,19 @@
+   <br />
+   <br />
+   <br />
+  <div class="container">
+    <h2> Organize the categories! </h2>
+    <p>Click the button below to add new category:</p>
+    <p>
+      <%= link_to 'Add new category', new_category_path, class: 'btn btn-primary btn-lg' %>
+    </p>
+  </div>
+
+<div class="column">
+	<section>
+<%= categories_tree_for @categories %>
+</section>
+</div>
+
+
+
