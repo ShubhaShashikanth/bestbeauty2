@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>Bestbeauty2</title>
+    <!-- We are pulling the bootstrapping style scripts from the remote source -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,11 +14,11 @@
 
   <body>
   	 <header>
-      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/navigation' %> <!-- to get the navigation bar view from the partial -->
     </header>
  
 	<div id="main">
-		 <%= render 'layouts/messages' %>
+		 <%= render 'layouts/messages' %> <!-- to get the messages if any from the partial -->
 	  <%= yield %>
 	</div>
 

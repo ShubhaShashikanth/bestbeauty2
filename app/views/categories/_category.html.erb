@@ -1,7 +1,7 @@
 <div class="container">
   <h2> <%= category.name %> </h2>
   <p class="text-muted">Added by <strong> Admin </strong> on
-    <%= l(category.created_at, format: '%B, %d %Y %H:%M:%S') %> </p>
+    <%= l(category.created_at, format: '%B, %d %Y %H:%M:%S') %> </p><!-- date and time using the l method (which is actually a shorthand for the localize method defined in I18n)  -->
   <p><%= link_to 'Delete', category_path(category.id), 
                            method: :delete, 
                            data: { confirm: 'Are you sure?' } %></p>
@@ -14,24 +14,37 @@
     <p>
     	
     	<div >
-    <%= image_tag Product.find_by_category_id(category.id).image.url, size: "260x200" if Product.find_by_category_id(category.id) %>
-    <% if category.leaf? != 0 %>
-       <% catvar = category.descendant_ids %>
-       <% puts "the list of child ids are:" + catvar.to_s %>
-       <% catvar.each do |pic| %>
-       
-       <section>
-       <%= image_tag Product.find_by_category_id(pic).image.url, size: "260x200" , class: "class-img" if Product.find_by_category_id(pic) %>
-       </section>
-     
-       <% end%>
-     <%end%>
+ <!--This loop is for finding out all the product images related to root id-->
+    	<% satvar = Product.where(category_id: category.id).ids %>
+       	<% puts "the list of satvar product ids of root id are:" + satvar.to_s %>
+       	<% puts "before entering the loop"%>
+       	<% satvar.each do |sic| %>
+       		<%= image_tag Product.find(sic).image.url, size: "260x200" , class: "class-img" if Product.find(sic) %>
+       		<% puts "after entering the loop"%>
+       	<%end%>
+ 
+    	<% if category.leaf? != 0 %>
+       		<% catvar = category.descendant_ids %>
+       			<% puts "the list of child ids are:" + catvar.to_s %>
+<!--This loop is for finding out all the descendant ids of the root-->
+       			<% catvar.each do |pic| %>
+       				<% datvar = Product.where(category_id: pic).ids%>
+       				<% puts "the list of datvar product ids of child ids are:" + datvar.to_s %>
+       				<% puts "before entering the second loop" %>
+<!--This loop is for finding out all the product images related to descendant id-->
+       				<% datvar.each do |ric| %>
+      					 <%= image_tag Product.find(ric).image.url, size: "260x200" , class: "class-img" if Product.find(ric) %>
+      					 <% puts "after entering the second loop"%>
+       				<%end%>
+      			 <% end%>
+     	 <%end%>
      
     
-     </div>
+         </div>
     </p> 
-                         
-    <% from_reply_form ||= nil %>
+ 
+<!--This part of code is for allowing the user to add the subcategory-->                         
+    <% from_reply_form ||= nil %> <!-- We want to call from_reply_form from multiple places and thus, we set it as nil here -->
     <% unless from_reply_form %>
       <p><%= link_to 'Add Sub Category', new_category_path(category.id) %></p>
      <% end %>                     

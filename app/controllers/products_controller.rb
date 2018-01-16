@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.category_id = params[:category_id]
+    @product.category_id = params[:category_id] #we need to be creating the category object as well for getting the product added.
 
     respond_to do |format|
       if @product.save

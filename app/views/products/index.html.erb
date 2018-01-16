@@ -29,7 +29,7 @@
 				        <dl>
 				            <dt><%= product.name %></dt>
 							<dd><%= truncate(strip_tags(product.description),
-							length: 80) %></dd>
+							length: 80) %></dd> <!-- We want to show the description to be limited to certain length for fitting into the page -->
 						</dl>
 				        </td>
 				        <td><%= number_to_currency(product.price) %></td>

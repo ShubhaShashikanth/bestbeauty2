@@ -21,6 +21,6 @@
   <strong>Category:</strong>
   <%= @product.category.name %>
 </p>
-  <%= image_tag @product.image.url %>
+  <%= image_tag @product.image.url %> <!-- 'image.url' is a method obtained from paperclip gem -->
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
